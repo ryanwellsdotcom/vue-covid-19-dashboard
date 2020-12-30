@@ -66,9 +66,9 @@
         <li class="recovered"><span v-html="totalRecovered"></span>Recovered</li>
         <li class="deaths"><span v-html="totalDeaths"></span>Deaths</li>
       </ul>
-      <p class="grade">*Totals to date (<a href="https://covidtracking.com/about-data/state-grades" target="_blank">data quality grade {{qualityGrade}}</a>)</p>
+      <p class="grade">*Totals to date (<a href="https://covidtracking.com/about-data/state-grades" target="_blank" rel="noopener">data quality grade {{qualityGrade}}</a>)</p>
     </div>
-    <p class="source">Data source: <a href="https://covidtracking.com/data/api" target="_blank">https://covidtracking.com/data/api</a></p>
+    <p class="source">Data source: <a href="https://covidtracking.com/data/api" target="_blank" rel="noopener">https://covidtracking.com/data/api</a></p>
   </div>
 </template>
 
