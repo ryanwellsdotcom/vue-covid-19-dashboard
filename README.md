@@ -1,4 +1,7 @@
 # vue-covid-19-dashboard
+A simplified interactive dashboard that allows you to explore COVID-19 data by U.S. state.
+
+### [Demo](https://ryanwells.com/us-covid-19-data/)
 
 ## Project setup
 ```
