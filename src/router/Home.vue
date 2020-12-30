@@ -57,7 +57,8 @@
       </select>
     </label> 
     <div class="chart">
-      <canvas id="covid-chart" width="400" height="200" :class="{loading: isActive}"></canvas>
+      <svg class="spinner" :class="{hide: !loading}" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg>
+      <canvas id="covid-chart" width="400" height="200" :class="{loading: loading}"></canvas>
     </div>
     <div class="stats">
       <h3 v-html="stateName + '*'"></h3>
@@ -80,20 +81,21 @@ export default {
   name: 'Home',
   created(){
     document.title = 'U.S. COVID-19 data by state | ryanwells.com';
+    this.getData(this.stateAbbrev);
   },
   mounted() {
     this.vueCanvas = document.getElementById('covid-chart').getContext('2d');
     this.createChart();
-    // after the chart is instantiated, fetch the data
-    this.getData(this.stateAbbrev);
+    this.dataReady = true;
   },
   data()  {
     return {
       vueCanvas: null,
       vueChart: null,
-      isActive: false,
+      loading: true,
       monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       selectDisabled: false,
+      dataReady: false,
       stateAbbrev: 'mi',
       stateNameBuffered: 'Michigan',
       stateName: '',
@@ -198,12 +200,15 @@ export default {
   methods: {
     onInputChange(e) {
       this.selectDisabled = true; // temporarily disable select elm while data is being fetched
-      this.isActive = true;
+      this.loading = true;
       this.stateAbbrev = e.target.value.toLowerCase();
       this.stateNameBuffered = e.target.selectedOptions[0].text;
       this.vueChart.reset();
       // api call using selected state
       this.getData(this.stateAbbrev);
+
+      // set data ready flag to false so chart doesn't render before data is ready
+      this.dataReady = false;
     },
     getData(state) {
       //const url = 'https://api.covidtracking.com/v1/states/mi/daily.json';
@@ -234,11 +239,25 @@ export default {
             this.chartData.data.datasets[2].data.unshift(e.death);
           }
         });
-        this.selectDisabled = false; // re-enable select elm
-        this.isActive = false;
-        this.stateName = this.stateNameBuffered;
-        this.vueChart.update();
+      }).catch((error)=> {
+        console.log(error);
+      }).then(()=> {
+        // set data ready flag for the onDataReady method
+        this.dataReady = true;
+        this.onDataReady();
       });
+    },
+    onDataReady() {
+      const check = setTimeout(()=> {
+        // call recursively until dateReady is set to true
+        this.dataReady ? this.displayData() : this.onDataReady();
+      },50);
+    },
+    displayData() {
+      this.selectDisabled = false; // re-enable select elm
+      this.loading = false; // reduces opacity of chart to inicate loading
+      this.stateName = this.stateNameBuffered; // times the display of the state name heading with the rendering of the chart
+      this.vueChart.update(); // render the chart
     },
     createChart() {
       this.vueChart = new Chart(this.vueCanvas, this.chartData);
@@ -282,6 +301,7 @@ select {
 }
 
 .chart {
+  position: relative;
   background: #fff;
   padding: 5px 10px;
   border-radius: 8px 8px 0 0;
@@ -368,5 +388,68 @@ select {
       text-decoration: underline;
     }
   }
+}
+
+.spinner {
+  -webkit-animation: rotate 2s linear infinite;
+          animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+}
+.spinner .path {
+  stroke: #aaa;
+  stroke-linecap: round;
+  -webkit-animation: dash 1.5s ease-in-out infinite;
+          animation: dash 1.5s ease-in-out infinite;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+.hide {
+  display: none;
 }
 </style>
