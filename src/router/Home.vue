@@ -296,6 +296,7 @@ select {
   padding: 5px 10px;
   margin-left: 0;
   border-color: #bbb;
+  background-color: #fff;
   margin-left: 0;
   border-radius: 5px;
 }
