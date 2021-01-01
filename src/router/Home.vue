@@ -46,12 +46,11 @@ export default {
     window.addEventListener('resize', () => {
       if (this.chartReady) {
         let delay = setTimeout(() => {
-          this.vueChart.reset();
-          this.vueChart.update();
+          this.vueChart.resize();
         }, 450);
       }
     });
-    window.addEventListener('orientationchange', () => {
+    window.addEventListener('deviceorientation', () => {
       if (this.chartReady) {
         this.vueChart.resize();
       }
