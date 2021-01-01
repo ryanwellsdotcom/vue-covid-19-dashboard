@@ -43,7 +43,6 @@ export default {
   mounted() {
     this.vueCanvas = document.getElementById('covid-chart').getContext('2d');
     this.createChart();
-    this.dataReady = true;
   },
   data() {
     return {
@@ -64,7 +63,7 @@ export default {
         'November',
         'December'
       ],
-      dataReady: false,
+      chartReady: false,
       stateAbbrev: 'mi',
       stateNameBuffered: 'Michigan',
       stateName: '',
@@ -176,12 +175,8 @@ export default {
       this.vueChart.reset();
       // api call using selected state
       this.getData(this.stateAbbrev);
-
-      // set data ready flag to false so chart doesn't render before data is ready
-      this.dataReady = false;
     },
     getData(state) {
-      //const url = 'https://api.covidtracking.com/v1/states/mi/daily.json';
       axios
         .get(`https://api.covidtracking.com/v1/states/${state}/daily.json`)
         .then(response => {
@@ -228,16 +223,19 @@ export default {
           console.log(error);
         })
         .finally(() => {
-          // set data ready flag for the onDataReady method
-          this.dataReady = true;
-          this.onDataReady();
+          this.onDataReady(this.displayData);
         });
     },
-    onDataReady() {
-      const check = setTimeout(() => {
-        // call recursively until dateReady is set to true
-        this.dataReady ? this.displayData() : this.onDataReady();
-      }, 50);
+    onDataReady(callback) {
+      if (!this.chartReady) {
+        // used when app initially loads so chart doesn't try to render before it's created
+        const check = setTimeout(() => {
+          // call recursively until dateReady is set to true
+          this.chartReady ? callback() : this.onDataReady();
+        }, 50);
+      } else {
+        callback();
+      }
     },
     displayData() {
       this.loading = false;
@@ -246,6 +244,9 @@ export default {
     },
     createChart() {
       this.vueChart = new Chart(this.vueCanvas, this.chartData);
+      if (!this.chartReady) {
+        this.chartReady = true;
+      }
     }
   }
 };
