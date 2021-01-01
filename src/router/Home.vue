@@ -48,7 +48,7 @@ export default {
         let delay = setTimeout(() => {
           this.vueChart.reset();
           this.vueChart.update();
-        }, 250);
+        }, 450);
       }
     });
     window.addEventListener('orientationchange', () => {
