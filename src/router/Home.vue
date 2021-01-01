@@ -43,6 +43,14 @@ export default {
   mounted() {
     this.vueCanvas = document.getElementById('covid-chart').getContext('2d');
     this.createChart();
+    window.addEventListener('resize', () => {
+      if (this.chartReady) {
+        let delay = setTimeout(() => {
+          this.vueChart.reset();
+          this.vueChart.update();
+        }, 250);
+      }
+    });
     window.addEventListener('orientationchange', () => {
       if (this.chartReady) {
         this.vueChart.resize();
