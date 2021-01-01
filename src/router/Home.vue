@@ -46,6 +46,7 @@ export default {
     window.addEventListener('resize', function() {
       if (this.chartReady) {
         let delay = setTimeout(() => {
+          this.vueChart.reset();
           this.vueChart.update();
         }, 250);
       }
