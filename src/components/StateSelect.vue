@@ -75,7 +75,7 @@ export default {
 label {
   display: block;
   margin: 20px 0;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 640px) {
     text-align: right;
   }
   span {
