@@ -1,5 +1,7 @@
 <template>
-  <Home />
+  <div class="wrapper" aria-atomic="true">
+    <Home />
+  </div>
 </template>
 
 <script>
@@ -14,10 +16,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../node_modules/normalize.css/normalize.css'; 
+@import '../node_modules/normalize.css/normalize.css';
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: #eee;
   margin: 0;
 }
