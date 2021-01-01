@@ -91,7 +91,7 @@ label {
 
 select {
   font-family: 'Roboto', sans-serif;
-  font-size: 0.8125rem;
+  font-size: 0.8125rem !important;
   padding: 5px 10px;
   margin-left: 0;
   border-color: #bbb;
