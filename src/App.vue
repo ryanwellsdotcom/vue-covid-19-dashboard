@@ -1,16 +1,19 @@
 <template>
   <div class="wrapper" aria-atomic="true">
+    <GithubCorner />
     <Home />
   </div>
 </template>
 
 <script>
 import Home from './router/Home';
+import GithubCorner from './components/GithubCorner';
 
 export default {
   name: 'App',
   components: {
-    Home
+    Home,
+    GithubCorner
   }
 };
 </script>
