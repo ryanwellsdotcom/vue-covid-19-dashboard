@@ -36,7 +36,7 @@ export default {
 
 <style lang="scss" scoped>
 #github-corner-wrapper {
-  @media screen and (max-width: 639px) {
+  @media screen and (max-width: 640px) {
     display: none;
   }
 }
