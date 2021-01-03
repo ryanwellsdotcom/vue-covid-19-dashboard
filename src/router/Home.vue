@@ -43,6 +43,8 @@ export default {
   mounted() {
     this.vueCanvas = document.getElementById('covid-chart').getContext('2d');
     this.createChart();
+
+    // fix chart not resizing correctly
     window.addEventListener('resize', () => {
       if (this.chartReady) {
         let delay = setTimeout(() => {
@@ -231,28 +233,21 @@ export default {
             }
           });
         })
+        .finally(() => {
+          this.displayData();
+        })
         .catch(error => {
           console.log(error);
-        })
-        .finally(() => {
-          this.onDataReady();
         });
-    },
-    onDataReady() {
-      if (!this.chartReady) {
-        // used when app initially loads so chart doesn't try to render before it's created
-        const check = setTimeout(() => {
-          // call recursively until dateReady is set to true
-          this.chartReady ? this.displayData() : this.onDataReady();
-        }, 50);
-      } else {
-        this.displayData();
-      }
     },
     displayData() {
       this.loading = false;
       this.stateName = this.stateNameBuffered; // times the display of the state name heading with the rendering of the chart
-      this.vueChart.update(); // render the chart
+      if (!this.chartReady) {
+        this.$nextTick(this.vueChart.update());
+      } else {
+        this.vueChart.update();
+      } // render/re-render the chart
     },
     createChart() {
       this.vueChart = new Chart(this.vueCanvas, this.chartData);
