@@ -75,9 +75,7 @@ export default {
 label {
   display: block;
   margin: 20px 0;
-  @media screen and (max-width: 640px) {
-    text-align: right;
-  }
+  text-align: right;
   span {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -92,9 +90,9 @@ label {
 select {
   font-family: 'Roboto', sans-serif;
   font-size: 0.8125rem !important;
-  padding: 5px 10px;
+  padding: 8px 15px;
   margin-left: 0;
-  border-color: #bbb;
+  border-color: #ccc;
   background-color: #fff;
   margin-left: 0;
   border-radius: 5px;
