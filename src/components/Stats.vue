@@ -33,7 +33,7 @@ export default {
 <style lang="scss" scoped>
 .stats {
   h3 {
-    margin: 5px 0 20px 0;
+    margin: 5px 0 15px 0;
     padding: 0 0 5px 0;
     text-align: center;
     font-size: 1.375rem;
@@ -57,7 +57,7 @@ export default {
   }
   ul {
     margin: 0 auto;
-    margin-bottom: 26px;
+    margin-bottom: 20px;
     padding: 0;
     max-width: 80%;
     list-style-type: none;
@@ -80,7 +80,7 @@ export default {
     }
   }
   font-family: 'Roboto', sans-serif;
-  padding: 10px 30px 20px 30px;
+  padding: 20px 0 20px 0;
   background: #fff;
   color: #333;
   border-radius: 0 0 8px 8px;
