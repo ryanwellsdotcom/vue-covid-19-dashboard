@@ -16,8 +16,8 @@ export default {
 .source {
   font-family: 'Roboto', sans-serif;
   font-size: 0.8125rem;
-  padding: 3px;
-  margin: 30px 0 30px 0;
+  padding: 0;
+  margin: 0;
   color: #666;
   @media screen and (max-width: 375px) {
     text-align: center;
