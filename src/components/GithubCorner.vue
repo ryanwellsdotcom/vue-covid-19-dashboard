@@ -58,6 +58,10 @@ svg {
     opacity: 1;
     transition: opacity 0.15s;
   }
+  @media screen and (min-width: 1500px) {
+    width: 80px;
+    height: 80px;
+  }
 }
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out;

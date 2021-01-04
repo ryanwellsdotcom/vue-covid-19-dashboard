@@ -47,6 +47,9 @@ body {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 15px;
+  @media screen and (min-width: 1500px) {
+    max-width: 1170px;
+  }
 }
 
 footer {

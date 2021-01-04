@@ -4,15 +4,17 @@
     <ul>
       <li class="positive"><span v-html="totalPositives"></span>Positive</li>
       <li class="recovered"><span v-html="totalRecovered"></span>Recovered</li>
-      <li class="deaths"><span v-html="totalDeaths"></span>Deaths</li>
+      <li class="deaths"><span v-html="totalDeaths"></span>Deaths**</li>
     </ul>
-    <p class="grade">
+    <p class="footnotes">
       *Totals to date (<a
         href="https://covidtracking.com/about-data/state-grades"
         target="_blank"
         rel="noopener"
         >data quality grade {{ qualityGrade }}</a
       >)
+      <br />
+      **Increase since yesterday: {{ increase }}
     </p>
   </div>
 </template>
@@ -25,7 +27,8 @@ export default {
     totalPositives: String,
     totalRecovered: String,
     totalDeaths: String,
-    qualityGrade: String
+    qualityGrade: String,
+    increase: String
   }
 };
 </script>
@@ -39,11 +42,12 @@ export default {
     font-size: 1.375rem;
     font-weight: 500;
   }
-  .grade {
-    margin: 5px 0 8px 0;
+  .footnotes {
+    margin: 5px 0 0 0;
     padding: 10px 0 0 0;
-    font-size: 0.835rem;
+    font-size: 0.875rem;
     color: #666;
+    line-height: 1.5;
     a {
       color: #427aa9;
       text-decoration: none;
@@ -53,6 +57,9 @@ export default {
     }
     @media screen and (max-width: 375px) {
       text-align: center;
+    }
+    @media screen and (min-width: 1500px) {
+      font-size: 0.9375rem;
     }
   }
   ul {
@@ -65,6 +72,9 @@ export default {
       display: flex;
       justify-content: space-evenly;
     }
+    @media screen and (min-width: 1500px) {
+      margin-bottom: 30px;
+    }
     li {
       text-align: center;
       width: 33.333%;
@@ -72,10 +82,16 @@ export default {
         margin-bottom: 30px;
         width: 100%;
       }
+      @media screen and (min-width: 1500px) {
+        font-size: 1.125rem;
+      }
       span {
         font-size: 1.5rem;
         display: block;
         margin-bottom: 3px;
+        @media screen and (min-width: 1500px) {
+          font-size: 2rem;
+        }
       }
     }
   }
@@ -84,5 +100,8 @@ export default {
   background: #fff;
   color: #333;
   border-radius: 0 0 8px 8px;
+  @media screen and (min-width: 1500px) {
+    padding: 40px 0 40px 0;
+  }
 }
 </style>

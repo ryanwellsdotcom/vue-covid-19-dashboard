@@ -15,12 +15,15 @@ export default {
 <style lang="scss" scoped>
 .source {
   font-family: 'Roboto', sans-serif;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   padding: 0;
   margin: 0;
   color: #666;
   @media screen and (max-width: 375px) {
     text-align: center;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 0.9375rem;
   }
   a {
     color: #3c709a;

@@ -15,6 +15,7 @@
     :totalRecovered="totalRecovered"
     :totalDeaths="totalDeaths"
     :qualityGrade="qualityGrade"
+    :increase="increasedDeaths"
   />
 </template>
 
@@ -81,6 +82,7 @@ export default {
       totalPositives: '',
       totalRecovered: '',
       totalDeaths: '',
+      increasedDeaths: '',
       qualityGrade: '',
       chartData: {
         type: 'line',
@@ -210,6 +212,10 @@ export default {
           this.qualityGrade = response.data[0].dataQualityGrade
             ? response.data[0].dataQualityGrade
             : 'N/A';
+          this.increasedDeaths =
+            response.data[0].deathIncrease !== null
+              ? response.data[0].deathIncrease
+              : 'N/A';
 
           response.data.forEach((e, i) => {
             // find stats for the first of each month
