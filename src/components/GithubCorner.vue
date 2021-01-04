@@ -42,6 +42,7 @@ export default {
 }
 
 svg {
+  transform: scale(-1, 1);
   width: 50px;
   height: 50px;
   fill: #000;
@@ -51,7 +52,7 @@ svg {
   position: absolute;
   top: 0;
   border: 0;
-  right: 0;
+  left: 0;
   z-index: 1000;
   &:hover {
     opacity: 1;
