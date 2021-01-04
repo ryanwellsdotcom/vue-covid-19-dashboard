@@ -16,7 +16,6 @@
     :totalDeaths="totalDeaths"
     :qualityGrade="qualityGrade"
   />
-  <Footer />
 </template>
 
 <script>
@@ -26,15 +25,13 @@ import axios from 'axios';
 import StateSelect from '../components/StateSelect';
 import Spinner from '../components/Spinner';
 import Stats from '../components/Stats';
-import Footer from '../components/Footer';
 
 export default {
   name: 'Home',
   components: {
     StateSelect,
     Spinner,
-    Stats,
-    Footer
+    Stats
   },
   created() {
     document.title = 'U.S. COVID-19 data by state | ryanwells.com';
@@ -265,15 +262,16 @@ export default {
   background: #fff;
   padding: 5px 10px;
   border-radius: 8px 8px 0 0;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  @media screen and (max-width: 539px) {
+    display: none !important;
+  }
   #covid-chart {
     opacity: 1;
     transition: opacity 0.25s;
     &.loading {
       opacity: 0.7 !important;
       transition: opacity 0.25s;
-    }
-    @media screen and (max-width: 539px) {
-      display: none !important;
     }
   }
 }
