@@ -198,7 +198,6 @@ export default {
           this.chartData.data.datasets[0].data = [];
           this.chartData.data.datasets[1].data = [];
           this.chartData.data.datasets[2].data = [];
-
           // set stats for totals
           this.totalPositives = response.data[0].positive
             ? response.data[0].positive.toLocaleString()
@@ -214,7 +213,7 @@ export default {
             : 'N/A';
           this.increasedDeaths =
             response.data[0].deathIncrease !== null
-              ? response.data[0].deathIncrease
+              ? response.data[0].deathIncrease.toLocaleString()
               : 'N/A';
 
           response.data.forEach((e, i) => {
