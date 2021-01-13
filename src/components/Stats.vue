@@ -58,7 +58,7 @@ export default {
     @media screen and (max-width: 375px) {
       text-align: center;
     }
-    @media screen and (min-width: 1500px) {
+    @media screen and (min-width: $monitorLg) {
       font-size: 0.9375rem;
     }
   }
@@ -72,35 +72,35 @@ export default {
       display: flex;
       justify-content: space-evenly;
     }
-    @media screen and (min-width: 1500px) {
+    @media screen and (min-width: $monitorLg) {
       margin-bottom: 30px;
     }
     li {
       text-align: center;
       width: 33.333%;
-      @media screen and (max-width: 375px) {
+      @media screen and (max-width: $mobileSm) {
         margin-bottom: 30px;
         width: 100%;
       }
-      @media screen and (min-width: 1500px) {
+      @media screen and (min-width: $monitorLg) {
         font-size: 1.125rem;
       }
       span {
         font-size: 1.5rem;
         display: block;
         margin-bottom: 3px;
-        @media screen and (min-width: 1500px) {
+        @media screen and (min-width: $monitorLg) {
           font-size: 2rem;
         }
       }
     }
   }
-  font-family: 'Roboto', sans-serif;
+  font-family: $fontFamily;
   padding: 20px 0 20px 0;
   background: #fff;
   color: #333;
   border-radius: 0 0 8px 8px;
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: $monitorLg) {
     padding: 40px 0 40px 0;
   }
 }

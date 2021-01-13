@@ -76,7 +76,7 @@ label {
   display: block;
   margin: 20px 0;
   text-align: right;
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: $monitorLg) {
     margin-top: 60px;
   }
   span {
@@ -91,7 +91,7 @@ label {
 }
 
 select {
-  font-family: 'Roboto', sans-serif;
+  font-family: $fontFamily;
   font-size: 0.8125rem !important;
   padding: 8px 15px;
   margin-left: 0;
@@ -99,7 +99,7 @@ select {
   background-color: #fff;
   margin-left: 0;
   border-radius: 5px;
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: $monitorLg) {
     font-size: 0.9375rem !important;
   }
 }

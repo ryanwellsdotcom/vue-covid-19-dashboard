@@ -29,7 +29,7 @@ export default {
 @import '../node_modules/normalize.css/normalize.css';
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: $fontFamily;
   background: #fff;
   margin: 0;
 }
@@ -47,7 +47,7 @@ body {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 15px;
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: $monitorLg) {
     max-width: 1170px;
   }
 }

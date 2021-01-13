@@ -14,15 +14,15 @@ export default {
 
 <style lang="scss" scoped>
 .source {
-  font-family: 'Roboto', sans-serif;
+  font-family: $fontFamily;
   font-size: 0.875rem;
   padding: 0;
   margin: 0;
   color: #666;
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: $mobileSm) {
     text-align: center;
   }
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: $monitorLg) {
     font-size: 0.9375rem;
   }
   a {

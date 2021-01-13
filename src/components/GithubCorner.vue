@@ -36,7 +36,7 @@ export default {
 
 <style lang="scss" scoped>
 #github-corner-wrapper {
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: $mobileLg) {
     display: none;
   }
 }
@@ -58,7 +58,7 @@ svg {
     opacity: 1;
     transition: opacity 0.15s;
   }
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: $monitorLg) {
     width: 80px;
     height: 80px;
   }
